@@ -3,12 +3,39 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, Instagram } from "lucide-react";
 
 export function Contact() {
-  const [status, setStatus] = useState<"idle" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus("success");
-    setTimeout(() => setStatus("idle"), 5000);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      company: String(formData.get("company") || "").trim(),
+      message: String(formData.get("message") || "").trim(),
+    };
+
+    setStatus("sending");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Falha ao enviar.");
+      }
+      setStatus("success");
+      form.reset();
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Falha ao enviar.");
+    }
   };
 
   return (
@@ -48,6 +75,7 @@ export function Contact() {
                 <div className="relative">
                   <input 
                     type="text" 
+                    name="name"
                     required
                     placeholder="Nome"
                     className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-white/40 focus:outline-none focus:border-[#ef4444] transition-colors text-lg"
@@ -56,6 +84,7 @@ export function Contact() {
                 <div className="relative">
                   <input 
                     type="email" 
+                    name="email"
                     required
                     placeholder="Email"
                     className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-white/40 focus:outline-none focus:border-[#ef4444] transition-colors text-lg"
@@ -64,23 +93,29 @@ export function Contact() {
                 <div className="relative">
                   <input 
                     type="text" 
+                    name="company"
                     placeholder="Empresa (Opcional)"
                     className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-white/40 focus:outline-none focus:border-[#ef4444] transition-colors text-lg"
                   />
                 </div>
                 <div className="relative">
                   <textarea 
+                    name="message"
                     required
                     placeholder="Mensagem"
                     rows={4}
                     className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-white/40 focus:outline-none focus:border-[#ef4444] transition-colors text-lg resize-none"
                   />
                 </div>
+                {status === "error" && (
+                  <p className="text-[#ef4444] text-sm font-bold uppercase tracking-wider">{errorMsg}</p>
+                )}
                 <button 
                   type="submit"
-                  className="w-full bg-white text-black py-6 text-xl font-black uppercase tracking-widest hover:bg-[#ef4444] hover:text-white transition-colors duration-300"
+                  disabled={status === "sending"}
+                  className="w-full bg-white text-black py-6 text-xl font-black uppercase tracking-widest hover:bg-[#ef4444] hover:text-white transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Enviar Mensagem
+                  {status === "sending" ? "A enviar..." : "Enviar Mensagem"}
                 </button>
               </form>
             )}
