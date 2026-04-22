@@ -1,0 +1,89 @@
+Create a modern, editorial-style single-page website for a Portuguese digital agency called "Web Step - Tech Solutions" using React + TypeScript + Tailwind CSS.
+
+## Design Style
+- Inspired by BEHS.pt: pitch black background (#000000), bold editorial typography, minimal UI
+- Color palette: black (#000000), white (#ffffff), red (#ef4444 / red-600), accent blue (#0800FF) for CTA buttons only
+- Typography: ultra-bold/black font weights (font-black), large display text (text-7xl to text-9xl)
+- Layout: grid-based with 1px white/10 separators between cards, no rounded corners on key elements
+- Decorative elements: red horizontal lines (h-px or h-0.5) as section accents, red vertical line on hero left edge, red dots as label indicators
+
+## Components to Build
+
+### Navigation
+- Fixed, transparent on top, black on scroll
+- Red line (h-0.5) at very top of nav
+- Logo (logo.png) on left
+- Menu items with red underline animation on hover
+- "Orçamento" button: white bg, turns red on hover
+- Mobile menu: black bg, items with red hover, white CTA button
+
+### Hero
+- Full screen, black background
+- Red vertical accent line on left edge (w-1)
+- Small label: red dot + "Web Step — Soluções Digitais" in white/40
+- Massive title: "Fazemos o / Seu Negócio (white/20) / Crescer." (white)
+- Blue (#0800FF) CTA button: "Pedir Orçamento Grátis"
+- Stats row at bottom with red accent bar on first stat: 24/7, 100%, <1h
+- Watermark "WS" text-white/5 bottom right
+- Top right decorative lines: white and red
+
+### Services (4 cards in grid with 1px separators)
+- Section label with red dash + text
+- Title: "As nossas formas de entregar valor."
+- 4 services: Landing Pages (first card RED background), Otimização SEO, Suporte Informático, Informática & IT
+- Each card: hashtag, square icon border, title, description, features list with dot bullets, "Saber Mais" arrow link
+- Hover: bg-white/5, border turns white
+
+### Portfolio (single project)
+- Section label with red dash
+- Title: "Projeto em Destaque."
+- Horizontal 2-col layout: image left, content right
+- Red top border on image
+- Category badge (black bg, white border)
+- 3 result boxes: first one with red border/bg
+- "Quero um projeto semelhante" link
+- Blue CTA button at bottom
+
+### Process (4 steps in grid)
+- Large number (text-white/5) per step
+- Square icon border, turns red on hover
+- Red bottom line animation on hover (scale-x-0 to scale-x-100)
+
+### Why Choose Us (4 cards)
+- Icon box: on hover inverts to white bg + black icon
+- Red top line animation on hover (w-0 to w-full)
+- 4 reasons: Entrega Rápida, Experiência Técnica, Foco no Cliente, Suporte Fiável
+
+### Contact
+- Red accent line above form
+- Form inputs: no background, only bottom border (border-b), focus turns red
+- Submit button: white bg, turns red on hover
+- Sidebar: icon boxes turn red on hover, info cards
+- "Disponível agora" green pulse dot
+- Red line at top of availability card
+
+### Footer
+- Red line at very top
+- Logo + description + Instagram link (turns red on hover)
+- Two link columns: Serviços, Empresa
+- Bottom bar: copyright + red pulse dot "Disponível para novos projectos"
+
+## Technical Details
+- React functional components, TypeScript
+- Tailwind CSS only for styling
+- Lucide React for icons
+- Smooth scroll between sections using getElementById
+- Mobile responsive with hamburger menu
+- All sections: id="home", id="services", id="portfolio", id="process", id="about", id="contact"
+- Logo file: /logo.png (place in public folder)
+- Portfolio image: /elitesite.png (place in public folder)
+- All text in European Portuguese (PT-PT)
+
+## Content (PT-PT)
+- Agency: Web Step - Tech Solutions
+- Email: webstep.pt@gmail.com
+- Location: Guimarães, Portugal
+- Instagram: @webstep.pt
+- Services: Landing Pages, Otimização SEO, Suporte Informático, Informática & IT
+- Portfolio project: "Empresa de Detalhe Automóvel" - Landing Page + SEO Local
+- Stats: 24/7 Suporte, 100% Personalizadas, <1h Resposta

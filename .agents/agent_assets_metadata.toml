@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "z3199LgzCa_l71rrBm-tA"
+uri = "file://artifacts/webstep/src/assets/portfolio-mockup.png"
+type = "image"
+title = "Car detailing landing page mockup"
