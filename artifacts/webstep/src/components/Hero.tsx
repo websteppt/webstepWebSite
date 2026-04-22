@@ -7,7 +7,10 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-between pt-32 pb-12 overflow-hidden bg-black">
+    <section
+      id="home"
+      className="relative min-h-screen flex flex-col justify-between pt-32 pb-12 overflow-hidden bg-black"
+    >
       {/* Decorative lines top right */}
       <div className="absolute top-24 right-12 flex flex-col gap-4 opacity-50">
         <div className="w-32 h-px bg-white/20" />
@@ -23,7 +26,7 @@ export function Hero() {
       </div>
 
       <div className="container mx-auto px-6 lg:px-12 flex-1 flex flex-col justify-center relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -45,6 +48,7 @@ export function Hero() {
           <button
             onClick={scrollToContact}
             className="mt-8 group flex items-center gap-4 bg-[#0800FF] text-white px-8 py-5 text-lg md:text-xl font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors duration-300"
+            style={{ backgroundColor: "#DC2626" }}
           >
             Pedir Orçamento Grátis
             <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-2" />
@@ -57,15 +61,21 @@ export function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-white/10 relative">
           {/* Red accent bar on first stat */}
           <div className="absolute top-[-1px] left-0 w-1/3 md:w-32 h-px bg-[#ef4444]" />
-          
+
           <div className="py-6 border-b md:border-b-0 md:border-r border-white/10">
-            <p className="text-2xl md:text-3xl font-bold uppercase tracking-wide">24/7 Suporte</p>
+            <p className="text-2xl md:text-3xl font-bold uppercase tracking-wide">
+              24/7 Suporte Disponível
+            </p>
           </div>
           <div className="py-6 md:px-8 border-b md:border-b-0 md:border-r border-white/10">
-            <p className="text-2xl md:text-3xl font-bold uppercase tracking-wide">100% Personalizadas</p>
+            <p className="text-2xl md:text-3xl font-bold uppercase tracking-wide">
+              100% Personalizado
+            </p>
           </div>
           <div className="py-6 md:px-8">
-            <p className="text-2xl md:text-3xl font-bold uppercase tracking-wide">&lt;1h Resposta</p>
+            <p className="text-2xl md:text-3xl font-bold uppercase tracking-wide">
+              &lt;1h Resposta Inicial
+            </p>
           </div>
         </div>
       </div>
