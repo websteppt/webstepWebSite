@@ -15,7 +15,7 @@ paths = [ "/" ]
 localPort = 18354
 
 [services.development]
-run = "pnpm --filter @workspace/webstep run dev"
+run = "cd artifacts/webstep && pnpm run dev"
 
 [services.production]
 build = [ "pnpm", "--filter", "@workspace/webstep", "run", "build" ]
