@@ -85,5 +85,5 @@ Create a modern, editorial-style single-page website for a Portuguese digital ag
 - Location: Guimarães, Portugal
 - Instagram: @webstep.pt
 - Services: Landing Pages, Otimização SEO, Suporte Informático, Informática & IT
-- Portfolio project: "Empresa de Detalhe Automóvel" - Landing Page + SEO Local
+- Portfolio project: "Oficina Automóvel" - Landing Page + SEO Local
 - Stats: 24/7 Suporte, 100% Personalizadas, <1h Resposta
