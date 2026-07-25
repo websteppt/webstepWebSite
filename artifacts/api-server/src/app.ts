@@ -1,16 +1,16 @@
 import express, { type Express } from "express";
 import cors from "cors";
-import pinoHttp from "pino-http";
+import { pinoHttp } from "pino-http";
 import type { IncomingMessage, ServerResponse } from "http";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
 
-const allowedOrigins = [
+const allowedOrigins: string[] = [
   "http://localhost:3000",
   process.env["FRONTEND_URL"],
-].filter(Boolean);
+].filter((origin): origin is string => Boolean(origin));
 
 app.use(
   pinoHttp({
