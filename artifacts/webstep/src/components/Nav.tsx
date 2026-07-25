@@ -42,12 +42,12 @@ export function Nav() {
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         <button 
           onClick={() => scrollTo("#home")}
-          className="text-2xl font-black tracking-tighter uppercase"
+          className="text-2xl font-black tracking-tighter uppercase whitespace-nowrap"
         >
           WEB STEP
         </button>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => (
             <button
               key={item.name}
@@ -67,7 +67,7 @@ export function Nav() {
         </div>
 
         <button
-          className="md:hidden"
+          className="lg:hidden"
           onClick={() => setMobileMenuOpen(true)}
         >
           <Menu className="w-8 h-8" />

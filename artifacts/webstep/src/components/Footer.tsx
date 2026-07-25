@@ -10,9 +10,9 @@ export function Footer() {
           <div className="md:col-span-6 lg:col-span-5">
             <h2 className="text-3xl font-black tracking-tighter uppercase mb-2">WEB STEP</h2>
             <p className="text-sm font-bold uppercase tracking-widest text-[#ef4444] mb-6">Tech Solutions</p>
-            <p className="text-white/60 leading-relaxed max-w-sm mb-8">
+            {/*<p className="text-white/60 leading-relaxed max-w-sm mb-8">
               Agência digital sediada em Guimarães. Ajudamos pequenos e médios negócios a crescer através de soluções tecnológicas robustas e design focado na conversão.
-            </p>
+            </p>*/}
             <a href="https://instagram.com/webstep.pt" target="_blank" rel="noreferrer" className="inline-block p-3 border border-white/20 hover:border-[#ef4444] hover:text-[#ef4444] transition-colors">
               <Instagram className="w-5 h-5" />
             </a>

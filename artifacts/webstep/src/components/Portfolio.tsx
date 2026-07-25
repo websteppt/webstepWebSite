@@ -32,13 +32,18 @@ export function Portfolio() {
             className="relative group"
           >
             <div className="absolute top-0 left-0 right-0 h-1 bg-[#ef4444] z-10" />
-            <div className="border border-white/10 bg-white/5 overflow-hidden">
+            <a
+              //href="https://autoalianca.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block border border-white/10 bg-white/5 overflow-hidden cursor-pointer"
+            >
               <img
                 src={portfolioMockup}
-                alt="Mockup do projeto de Detalhe Automóvel"
+                alt="Mockup do projeto da Oficina Automóvel"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
               />
-            </div>
+            </a>
           </motion.div>
 
           {/* Content side */}
@@ -53,8 +58,8 @@ export function Portfolio() {
             </div>
 
             <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-6">
-              Empresa de <br />
-              Detalhe Automóvel
+              Oficina <br />
+              Automóvel
             </h3>
 
             <p className="text-white/60 text-lg md:text-xl leading-relaxed mb-12 max-w-lg">
