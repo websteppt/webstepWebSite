@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -22,6 +23,18 @@ export function Nav() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Impede o scroll do body quando o menu mobile está aberto
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
@@ -74,41 +87,48 @@ export function Nav() {
         </button>
       </div>
 
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-black z-50 flex flex-col pt-20 px-6 pb-6"
-          >
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#ef4444]" />
-            <button
-              className="absolute top-6 right-6"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <div className="flex flex-col gap-6 mt-12">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollTo(item.href)}
-                  className="text-3xl font-black uppercase text-left hover:text-[#ef4444] transition-colors"
-                >
-                  {item.name}
-                </button>
-              ))}
-              <button
-                onClick={() => scrollTo("#contact")}
-                className="mt-8 bg-white text-black px-6 py-4 text-xl font-bold uppercase tracking-wider hover:bg-[#ef4444] hover:text-white transition-colors"
+      {/* O menu mobile é renderizado via Portal diretamente no <body>,
+          fora do contexto do <nav>, para evitar o bug de "containing block"
+          causado pelo backdrop-blur do nav quando há scroll. */}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="fixed inset-0 bg-black z-[100] flex flex-col pt-20 px-6 pb-6"
               >
-                Pedir Orçamento
-              </button>
-            </div>
-          </motion.div>
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-[#ef4444]" />
+                <button
+                  className="absolute top-6 right-6"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <X className="w-8 h-8" />
+                </button>
+                <div className="flex flex-col gap-6 mt-12">
+                  {navItems.map((item) => (
+                    <button
+                      key={item.name}
+                      onClick={() => scrollTo(item.href)}
+                      className="text-3xl font-black uppercase text-left hover:text-[#ef4444] transition-colors"
+                    >
+                      {item.name}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => scrollTo("#contact")}
+                    className="mt-8 bg-white text-black px-6 py-4 text-xl font-bold uppercase tracking-wider hover:bg-[#ef4444] hover:text-white transition-colors"
+                  >
+                    Pedir Orçamento
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </nav>
   );
 }
