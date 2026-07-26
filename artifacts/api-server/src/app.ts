@@ -9,6 +9,8 @@ const app: Express = express();
 
 const allowedOrigins: string[] = [
   "http://localhost:3000",
+  "https://webstep.pt",
+  "https://www.webstep.pt",
   process.env["FRONTEND_URL"],
 ].filter((origin): origin is string => Boolean(origin));
 
